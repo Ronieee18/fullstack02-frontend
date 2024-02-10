@@ -1,0 +1,22 @@
+ *{
+    box-sizing: border-box;
+    padding: 2px;
+ }
+  .text{
+    -webkit-text-stroke-width: 1;
+  -webkit-text-stroke-color: #000;
+  font-family: "Ink Free";
+  font-size: 20px;
+  font-style: normal;
+  font-weight:800;
+  line-height: normal;
+  background: linear-gradient(90deg, rgba(160, 21, 129, 0.63) 0%, #FF21CE 0.01%, rgba(246, 32, 199, 0.96) 4.49%, rgba(6, 1, 5, 0.89) 87.21%, rgba(0, 0, 0, 0.89) 122.55%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  mix-blend-mode: hard-light;
+  width: 80.51px;
+  height: 21.287px;
+  flex-shrink: 0;
+  
+  }

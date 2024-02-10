@@ -1,0 +1,37 @@
+.login{
+    background: rgb(63,94,251);
+  background: linear-gradient(90deg, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 100%);
+  }
+  
+  .text{
+    -webkit-text-stroke-width: 1;
+  -webkit-text-stroke-color: #000;
+  font-family: "Ink Free";
+  font-size: 16px;
+  font-style: normal;
+  font-weight:800;
+  line-height: normal;
+  background: linear-gradient(90deg, rgba(160, 21, 129, 0.63) 0%, #FF21CE 0.01%, rgba(246, 32, 199, 0.96) 4.49%, rgba(6, 1, 5, 0.89) 87.21%, rgba(0, 0, 0, 0.89) 122.55%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  mix-blend-mode: hard-light;
+  width: 70.51px;
+  height: 21.287px;
+  flex-shrink: 0;
+  
+  }
+  .loginText{
+    color: #000;
+  font-family: Inika;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  /* width: 39.025px; */
+  }
+  button[type='submit']{
+    background: rgb(63,94,251);
+    background: linear-gradient(90deg, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 100%);
+    border-radius: 20px;
+  }
