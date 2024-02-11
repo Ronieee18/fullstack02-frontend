@@ -2,9 +2,11 @@ import React,{useEffect, useState} from 'react'
 import axios from 'axios'
 
 function Subscribed_videos() {
+  const baseurl='https://fullstack02-backend.onrender.com';
+
     const [videosArray, setVideosArray] = useState([])
     const videos=async()=>{
-        const response=await axios.get('/api/v1/videos/subscribed')
+        const response=await axios.get(`${baseurl}/api/v1/videos/subscribed`)
         const arr=response.data.data;
         const videos=arr.map((obj)=>(obj.videos.map((obj)=>(obj))))
         setVideosArray(videos);

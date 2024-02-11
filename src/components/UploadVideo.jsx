@@ -4,6 +4,8 @@ import {useForm} from 'react-hook-form'
 
 
 function UploadVideo() {
+    const baseurl='https://fullstack02-backend.onrender.com';
+
     const {register,handleSubmit,setError,formState:{errors}}=useForm()
    
     //submit handler for the form
@@ -16,7 +18,7 @@ function UploadVideo() {
 
 
         try {
-            await axios.post('/api/v1/videos',formData,{
+            await axios.post(`${baseurl}/api/v1/videos`,formData,{
                 headers:{'Content-Type':'multipart/form-data'}
               })
                 .then(()=>{

@@ -5,6 +5,8 @@ import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faEllipsisV,faTrash,faPencil} from '@fortawesome/free-solid-svg-icons'
 
 function MyVideos() {
+  const baseurl='https://fullstack02-backend.onrender.com';
+
     const [videosArray, setVideosArray] = useState([])
     // const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [menuStates, setMenuStates] = useState({}); // State for each video item
@@ -50,7 +52,7 @@ function MyVideos() {
 
    const getvideos=async()=>{
     try {
-         const response= await axios.get('/api/v1/videos/myvideos')
+         const response= await axios.get(`${baseurl}/api/v1/videos/myvideos`)
         // console.log(response)
         setVideosArray(response.data.data)
             
@@ -63,7 +65,7 @@ function MyVideos() {
     let conf=window.confirm('Are you sure to delete this video?')
     if(conf){
     try {
-      const response=await axios.delete(`/api/v1/videos/${videoId}`)
+      const response=await axios.delete(`${baseurl}/api/v1/videos/${videoId}`)
       alert("Video deleted successfully")
       window.location.reload();
       console.log(response.data)

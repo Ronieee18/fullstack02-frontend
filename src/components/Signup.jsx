@@ -10,6 +10,8 @@ import {faUser,faEnvelope,faLock,faEye,} from '@fortawesome/free-solid-svg-icons
 
 
 function Signup() {
+  const baseurl='https://fullstack02-backend.onrender.com';
+
     const {register,handleSubmit,setError,formState:{errors}}=useForm()
     const dispatch=useDispatch()
     const navigate=useNavigate();
@@ -23,7 +25,7 @@ function Signup() {
         formData.append("avatar", data.avatar[0]);
         formData.append("coverImage", data.coverImage[0]);
 
-        await axios.post('/api/v1/users/register',formData,{
+        await axios.post(`${baseurl}/api/v1/users/register`,formData,{
           headers:{'Content-Type':'multipart/form-data'}
         })
             .then(async(response)=>{

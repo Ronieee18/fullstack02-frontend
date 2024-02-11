@@ -5,6 +5,8 @@ import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faBell,faBellConcierge, faL} from '@fortawesome/free-solid-svg-icons'
 
  function UserChannel() {
+    const baseurl='https://fullstack02-backend.onrender.com';
+
     const [isSubscribed,setIsSubscribed]=useState(false)
     const [subscribers,setSubscribers]=useState(0)
       const {username}=useParams();
@@ -18,7 +20,7 @@ import {faBell,faBellConcierge, faL} from '@fortawesome/free-solid-svg-icons'
 
     const  getUserChannel=async()=>{
         try {
-            const response= await axios.get(`/api/v1/users/c/${username}`)
+            const response= await axios.get(`${baseurl}/api/v1/users/c/${username}`)
             console.log(response.data)
             setName(response.data.data.fullName)
             setIsSubscribed(response.data.data.isSubscribed)
@@ -34,7 +36,7 @@ import {faBell,faBellConcierge, faL} from '@fortawesome/free-solid-svg-icons'
 
     const Subscribe=async()=>{
         try {
-            const response=await axios.post(`/api/v1/subscribe/${username}`)
+            const response=await axios.post(`${baseurl}/api/v1/subscribe/${username}`)
                 .then(()=>{alert('Subscribed')})
                 window.location.reload();
                 // setIsSubscribed(!isSubscribed)

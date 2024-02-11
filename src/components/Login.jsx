@@ -12,13 +12,15 @@ import { login as storeLogin} from '../store/authSlice'
 
 
 function Login() {
+  const baseurl='https://fullstack02-backend.onrender.com';
+
     const [pass,showPass]=useState(true)
     const {register,handleSubmit,setError,formState:{errors}}=useForm()
   const dispatch=useDispatch()
   const navigate=useNavigate();
   const  onSubmit=async(data)=>{
     try {
-        axios.post('/api/v1/users/login',data)
+        axios.post(`${baseurl}/api/v1/users/login`,data)
             .then(async(response)=>{
               dispatch(storeLogin(response))
               

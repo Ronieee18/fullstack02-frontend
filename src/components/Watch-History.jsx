@@ -10,6 +10,8 @@ import { useSelector } from 'react-redux'
 
 
 function WatchHistory() {
+  const baseurl='https://fullstack02-backend.onrender.com';
+
     const [videosArray, setVideosArray] = useState([])
     const navigate=useNavigate()
     const authStatus=useSelector((state)=>state.persistedReducer.status)
@@ -17,14 +19,14 @@ function WatchHistory() {
 
 
     const getWatchHistory=async()=>{
-        const  response=await axios.get('/api/v1/users//watch-History')
+        const  response=await axios.get(`${baseurl}/api/v1/users//watch-History`)
         if (isMounted.current) {
             setVideosArray(response.data.data);
           }
         // console.log(response)
     }
     const addToWatchHistory=async(_id)=>{
-        const response=await axios.post(`/api/v1/users/add/${_id}`)
+        const response=await axios.post(`${baseurl}/api/v1/users/add/${_id}`)
         // console.log(response)
       }
   
