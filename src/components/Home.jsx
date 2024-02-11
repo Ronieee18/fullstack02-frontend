@@ -11,6 +11,7 @@ import { useNavigate} from 'react-router-dom'
 import './home.css'
 
 function Home() {
+  const baseurl='https://fullstack02-backend.onrender.com';
   const [videosArray, setVideosArray] = useState([])
   const [isLoading, setIsLoading] = useState(true)
 
@@ -21,7 +22,7 @@ function Home() {
     const authStatus=useSelector((state)=>state.persistedReducer.status)
     // console.log(authStatus)
     const logout=async()=>{
-      await axios.post('/api/v1/users/logout')
+      await axios.post(`${baseurl}/api/v1/users/logout`)
         .then(()=>{
           alert('logout succesfully')
           dispatch(storeLogout())
@@ -38,7 +39,7 @@ function Home() {
     }
 
     const videos=async()=>{
-      await axios.get('/api/v1/videos/allvideos')
+      await axios.get(`${baseurl}/api/v1/videos/allvideos`)
         .then((response)=>{
           // console.log(response.data.data);
           setVideosArray(response.data.data);
