@@ -11,11 +11,13 @@ import {faUser,faEnvelope,faLock,faEye,} from '@fortawesome/free-solid-svg-icons
 
 function Signup() {
   const baseurl='https://fullstack02-backend.onrender.com';
+  // const baseurl="http://localhost:8000";
 
     const {register,handleSubmit,setError,formState:{errors}}=useForm()
     const dispatch=useDispatch()
     const navigate=useNavigate();
     const onSubmit=async(data)=>{
+      
       try {
         const formData=new FormData();
         formData.append("fullName", data.fullName);
@@ -36,6 +38,20 @@ function Signup() {
 
             })
             .catch((error)=>{
+              if(error.response && error.response.data){
+                const errorHTML=error.response.data;
+                console.log(errorHTML)
+                const parser=new DOMParser();
+                const doc=parser.parseFromString(errorHTML,'text/html')
+                const errormsg=doc.querySelector('pre').textContent;
+                
+                if(errormsg.includes('user with email or username already exist')){
+                  alert("User with email or username already exists..");
+                }
+                else if(errormsg.includes('user not found')){
+                  alert("User not found: Invalid username or email");
+                }
+              }
               console.log(error)
             })
             
@@ -61,50 +77,65 @@ function Signup() {
           <p className="text mt-2">MYTUBE</p>
           </div>
             <h2 className='my-3 font-serif text-xl font-medium'>Sign up</h2>
-            <div className='flex gap-x-10 '>
+            <div className='flex max-[560px]:flex-col gap-10 '>
                 <div className='relative'>
-                <FontAwesomeIcon icon={faUser}/>
+                  <div className='flex'>
+                <FontAwesomeIcon icon={faUser} className='mt-3'/>
             <input type="text" name='username' placeholder='Enter your FullName'   
-      className='border-b border-gray-600 max-[550px]:w-28 focus:outline-none p-2 placeholder:font-serif placeholder:text-sm'
+      className='relative border-b border-gray-600 max-[550px]:w-full focus:outline-none p-2 placeholder:font-serif placeholder:text-sm'
       {...register("fullName",{required:"this field is required"})}
-      />
+      /></div>
+    {errors.fullName && <p className="error absolute text-sm left-0 bottom-[-25px] text-red-500">{errors.fullName.message}</p>}
+
       </div>
-      <div>
-      <FontAwesomeIcon icon={faUser}/>
+      <div className='flex'>
+      <FontAwesomeIcon icon={faUser} className='mt-3'/>
+      <div className='relative'>
            <input type="text" name='username' placeholder='Create your username'   
-      className='border-b max-[550px]:w-28 border-gray-600 focus:outline-none p-2 placeholder:font-serif placeholder:text-sm'
-      {...register("username",{required:"this field is required"})}
+      className='relative border-b max-[550px]:w-full border-gray-600 focus:outline-none p-2 placeholder:font-serif placeholder:text-sm'
+      {...register("username",{required:"Username is required"})}
       />
+    {errors.username && <p className="error absolute text-sm left-0 bottom-[-25px]  text-red-500">{errors.username.message}</p>}
+    </div>
+
       </div>
 
       </div>
-      <div className='flex mt-6 '>
+      <div className='flex justify-center max-[570px]:justify-start mt-6 '>
       <FontAwesomeIcon icon={faEnvelope} className='mt-4 '/>
-
+    <div className='relative'>
 <input type="email" name='email' placeholder='    Type your email' 
 className='border-b border-gray-600 focus:outline-none p-2 placeholder:font-serif placeholder:text-sm  w-full'
-{...register("email",{required:"this field is required"})}
+{...register("email",{required:"Email is required"})}
 />
+{errors.email && <p className="error absolute left-0 bottom-[-25px] text-red-500 text-sm">*{errors.email.message}</p>}
+</div>
+
 </div>
     <div className='mt-7 '>
       Cover Image: 
       <input type="file" className='m-1'
-      {...register("coverImage",{required:"this field is required"})}
+      {...register("coverImage",{required:"Cover Image is required"})}
       />
+      {errors.coverImage && <p className="error text-sm absolute left-12 text-red-500">*{errors.coverImage.message}</p>}
+
       </div>
     <div className='mt-7 '>
       Avatar: 
       <input type="file" className='m-1'
-      {...register("avatar",{required:"this field is required"})}
+      {...register("avatar",{required:"Avatar is required"})}
       />
+      {errors.avatar && <p className="error text-sm absolute left-12 text-red-500">*{errors.avatar.message}</p>}
+
       </div>
       <div className='relative'>
       <FontAwesomeIcon icon={faLock} className=' '/>
 
 <input type="password" name='password' placeholder='   Create a password' 
 className='border-b border-gray-600 focus:outline-none p-2 placeholder:font-serif placeholder:text-sm mt-4 '
-{...register("password",{required:"this field is required"})}
+{...register("password",{required:"Password is required"})}
 />
+{errors.password && <p className="error absolute text-sm left-0 text-red-500">*{errors.password.message}</p>}
 </div>
 
       <button type='submit' className=' w-full hover:underline text-xl p-1 py-2 text-white my-12'>Signup</button>

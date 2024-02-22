@@ -20,7 +20,8 @@ import videofile from './video-file.png'
 
 
 function Header() {
-  const baseurl='https://fullstack02-backend.onrender.com';
+  // const baseurl='https://fullstack02-backend.onrender.com';
+  const baseurl="http://localhost:8000";
 
 
   const [name,setName]=useState("");
@@ -31,7 +32,7 @@ function Header() {
    useEffect(()=>{
     const fetchUser=async()=>{
         try {
-            const response=await axios.get(`${baseurl}/api/v1/users/current-user`,{
+            const response=await axios.get(`/api/v1/users/current-user`,{
                 withCredentials:true,
             })
             setName(response.data.data.fullName)
@@ -55,7 +56,7 @@ function Header() {
 
   const dispatch=useDispatch();
   const logout=async()=>{
-    await axios.post(`${baseurl}/api/v1/users/logout`)
+    await axios.post(`/api/v1/users/logout`)
       .then(()=>{
         alert('logout succesfully')
         dispatch(storeLogout())

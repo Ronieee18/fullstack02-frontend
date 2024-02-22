@@ -13,12 +13,18 @@ import { login as storeLogin} from '../store/authSlice'
 
 function Login() {
   const baseurl='https://fullstack02-backend.onrender.com';
+  // const baseurl="http://localhost:8000";
 
     const [pass,showPass]=useState(true)
     const {register,handleSubmit,setError,formState:{errors}}=useForm()
   const dispatch=useDispatch()
   const navigate=useNavigate();
   const  onSubmit=async(data)=>{
+    const {email,username,password}=data;
+    if(!email||!password||!username){
+      alert('all field are required')
+      return;
+    }
     try {
         axios.post(`${baseurl}/api/v1/users/login`,data)
             .then(async(response)=>{
@@ -34,6 +40,20 @@ function Login() {
 
             })
             .catch((error)=>{
+              if(error.response && error.response.data){
+                const errorHTML=error.response.data;
+                console.log(errorHTML)
+                const parser=new DOMParser();
+                const doc=parser.parseFromString(errorHTML,'text/html')
+                const errormsg=doc.querySelector('pre').textContent;
+                
+                if(errormsg.includes('Invalid credentials')){
+                  alert("invalid password");
+                }
+                else if(errormsg.includes('user not found')){
+                  alert("User not found: Invalid username or email");
+                }
+              }
               console.log(error)
             })
             
@@ -57,23 +77,30 @@ function Login() {
           <FontAwesomeIcon icon={faEnvelope}/>
 
       <input type="email" name='email' placeholder='Type your email' 
-      className='border-b border-gray-600 focus:outline-none p-2 placeholder:font-serif placeholder:text-sm'
-      {...register("email",{required:"this field is required"})} 
+      className='relative border-b border-gray-600 focus:outline-none p-2 placeholder:font-serif placeholder:text-sm'
+      {...register("email",{required:"Email is required"})} 
+      
       
       />
+      {errors.email && <p className="error absolute left-12 text-red-500">*{errors.email.message}</p>}
+           
       </div>
       <div className="username relative">
         <FontAwesomeIcon icon={faUser}/>
       <input type="text" name='username' placeholder='Type your username'   
       className='border-b border-gray-600 focus:outline-none p-2 placeholder:font-serif placeholder:text-sm'
-      {...register("username",{required:"this field is required"})}  
-      /></div>
+      {...register("username",{required:"Username is required"})}  
+
+      />
+      {errors.username && <p className="error absolute left-12 text-red-500">*{errors.username.message}</p>}
+      </div>
       <div className="password relative">
       <FontAwesomeIcon icon={faLock}/>
       <input  type={`${pass?'password':'text'}`} name='password' placeholder='Type your password' autoComplete='off' 
       className='border-b border-gray-600 p-2 focus:outline-none placeholder:font-serif placeholder:text-sm'
-      {...register("password",{required:"this field is required"})}  
+      {...register("password",{required:"Password is required"})}  
       />
+      {errors.password && <p className="error absolute left-12 text-red-500">*{errors.password.message}</p>}
       <FontAwesomeIcon icon={faEye} className={`absolute right-10 bottom-2.5 cursor-pointer`}
       onClick={()=>showPass((prev)=>!prev)}
       />

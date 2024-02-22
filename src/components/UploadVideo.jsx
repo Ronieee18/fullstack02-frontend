@@ -5,6 +5,7 @@ import {useForm} from 'react-hook-form'
 
 function UploadVideo() {
     const baseurl='https://fullstack02-backend.onrender.com';
+    // const baseurl="http://localhost:8000";
 
     const {register,handleSubmit,setError,formState:{errors}}=useForm()
    
