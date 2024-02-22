@@ -36,12 +36,12 @@ function Home() {
     }
     
     const addToWatchHistory=async(_id)=>{
-      const response=await axios.post(`${baseurl}/api/v1/users/add/${_id}`)
+      const response=await axios.post(`${baseurl} /api/v1/users/add/${_id}`)
       console.log(response)
     }
 
     const videos=async()=>{
-      await axios.get(`/api/v1/videos/allvideos`)
+      await axios.get(`${baseurl}/api/v1/videos/allvideos`)
         .then((response)=>{
           // console.log(response.data.data);
           setVideosArray(response.data.data);
