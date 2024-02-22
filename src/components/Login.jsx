@@ -33,6 +33,7 @@ function Login() {
               
               // const responseData=await response.json();
               // document.cookie=`accessToken=${response.data.accessToken}`;
+              console.log(response.data.data.accessToken)
               Cookies.set('accessToken',response.data.data.accessToken)
               console.log(response);
               alert("login succesfully");
