@@ -36,7 +36,7 @@ function Home() {
     }
     
     const addToWatchHistory=async(_id)=>{
-      const response=await axios.post(`${baseurl} /api/v1/users/add/${_id}`)
+      const response=await axios.post(`${baseurl}/api/v1/users/add/${_id}`)
       console.log(response)
     }
 

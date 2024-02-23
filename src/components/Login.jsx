@@ -22,7 +22,7 @@ function Login() {
 
   const fetchUser=async()=>{
     try {
-        const response=await axios.get(`/api/v1/users/current-user`,{
+        const response=await axios.get(`${baseurl}/api/v1/users/current-user`,{
             withCredentials:true,
         })
            console.log(response)
