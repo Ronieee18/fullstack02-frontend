@@ -19,6 +19,18 @@ function Login() {
     const {register,handleSubmit,setError,formState:{errors}}=useForm()
   const dispatch=useDispatch()
   const navigate=useNavigate();
+
+  const fetchUser=async()=>{
+    try {
+        const response=await axios.get(`/api/v1/users/current-user`,{
+            withCredentials:true,
+        })
+           console.log(response)
+    } catch (error) {
+        console.log(`ERROR IN LOGIN ${error}`)
+    }
+}
+
   const  onSubmit=async(data)=>{
     const {email,username,password}=data;
     if(!email||!password||!username){
@@ -36,6 +48,7 @@ function Login() {
               console.log(response.data.data.accessToken)
               Cookies.set('accessToken',response.data.data.accessToken)
               Cookies.set('refreshToken',response.data.data.refreshToken)
+              fetchUser();
               console.log(response);
               alert("login succesfully");
               navigate('/')
@@ -65,6 +78,7 @@ function Login() {
       alert(`error: ${error}`)
     }
   }
+  
   return (
     <div className=' flex justify-center login min-h-screen '>
       <div className='m-2 '>
