@@ -35,6 +35,7 @@ function Login() {
               // document.cookie=`accessToken=${response.data.accessToken}`;
               console.log(response.data.data.accessToken)
               Cookies.set('accessToken',response.data.data.accessToken)
+              Cookies.set('refreshToken',response.data.data.refreshToken)
               console.log(response);
               alert("login succesfully");
               navigate('/')
