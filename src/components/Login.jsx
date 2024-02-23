@@ -48,7 +48,7 @@ function Login() {
               console.log(response.data.data.accessToken)
               Cookies.set('accessToken',response.data.data.accessToken)
               Cookies.set('refreshToken',response.data.data.refreshToken)
-              fetchUser();
+              await fetchUser(); 
               console.log(response);
               alert("login succesfully");
               navigate('/')
