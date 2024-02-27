@@ -1,7 +1,7 @@
 import React, { useEffect,useState } from 'react'
 import { logout as storeLogout} from '../store/authSlice'
 import {useDispatch, useSelector} from 'react-redux'
-import axios from 'axios'
+import axios from './axiosConfig'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faHome} from '@fortawesome/free-solid-svg-icons'
 import subscribe from './subscription.png'

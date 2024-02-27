@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import Cookies from 'js-cookie'
 import mytube from './mytube.png'
-import axios from 'axios'
+import axios from './axiosConfig'
 import {useForm} from 'react-hook-form'
 import {useDispatch, useSelector} from 'react-redux'
 import './login.css'

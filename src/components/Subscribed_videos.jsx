@@ -1,5 +1,5 @@
 import React,{useEffect, useState} from 'react'
-import axios from 'axios'
+import axios from './axiosConfig'
 
 function Subscribed_videos() {
   const baseurl='https://fullstack02-backend.onrender.com';

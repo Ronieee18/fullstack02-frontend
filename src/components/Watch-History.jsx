@@ -1,4 +1,4 @@
-import axios from 'axios'
+import axios from './axiosConfig'
 import React,{useEffect, useState,useRef} from 'react'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faHome} from '@fortawesome/free-solid-svg-icons'

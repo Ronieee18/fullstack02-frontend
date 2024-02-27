@@ -1,5 +1,5 @@
 import React,{useState} from 'react'
-import axios from 'axios'
+import axios from './axiosConfig'
 import {useForm} from 'react-hook-form'
 
 
