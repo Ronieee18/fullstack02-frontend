@@ -37,7 +37,7 @@ function Header() {
             })
             setName(response.data.data.fullName)
             setUsername(response.data.data.username)
-            setCoverImage(response.data.data.coverImage)
+            setCoverImage(response.data.data.coverImage)  
             setEmail(response.data.data.email)
             setAvatar(response.data.data.avatar)
             
